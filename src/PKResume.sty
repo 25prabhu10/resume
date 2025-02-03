@@ -1,0 +1,96 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{PKResume}[2025/02/01 PKResume v1.0]
+
+% Document Layout and Margins
+\usepackage{geometry}
+  \geometry{a4paper, margin=.5in, top=.5in, bottom=2in}
+
+% Font-family and Font-size
+\usepackage[default,semibold]{sourcesanspro}
+
+% Paragraph Formatting
+\raggedright % left align no indent
+\raggedbottom % top align no indent
+
+% Colours
+\usepackage{xcolor}
+  \definecolor{highlight}{RGB}{61, 90, 128} % change colour https://g.co/kgs/aoqdi7
+
+% Hyperlinks
+\usepackage{hyperref}
+  \hypersetup{colorlinks=true, urlcolor=highlight}
+
+% List Formatting
+\usepackage{enumitem}
+
+\setlength{\tabcolsep}{0in}
+\renewcommand{\arraystretch}{1.5}
+
+  % Tighter spacing than itemize
+  \setlist[itemize]{align=parleft,left=0pt..1em}
+  \newenvironment{zitemize}{
+    \begin{itemize} \itemsep 1pt \parskip 0pt \parsep 1pt
+  }
+  {
+     \end{itemize} \vspace{-.5em}
+  }
+
+% Section Formatting
+\usepackage[nostruts]{titlesec}
+\titlespacing*{\section}{0em}{0.5em}{0em}
+\titleformat{\section}{\color{highlight} \raggedright \large}{}{0em}{}[\vspace{-0.75em}\hrulefill]
+
+% Subsection Formatting
+\titlespacing*{\subsection}{0em}{0em}{0em}
+\titleformat{\subsection}{\bfseries}{}{0em}{}[\vspace{.25em}]
+
+\newcommand{\company}[2]{\subsection*{#1\hfill{#2}}}
+
+% Subtext Formatting
+\newcommand{\subtext}[1]{\textit{#1}\par\vspace{-.5em}}
+
+% Bold Formatting
+\newcommand{\skills}[1]{ {\bfseries #1}}
+
+% No page number
+\pagenumbering{gobble}
+
+% Header and Footer
+\usepackage{fancyhdr}
+  \fancypagestyle{first-page}{
+    \fancyhf{}
+
+    \lhead{
+      \Phone \\
+      \href{mailto:\Email}{\Email} \\
+      \City
+    }
+
+    \chead{
+      \centering
+      {\Huge \textbf{\Name}} \\
+
+      \vspace{.25em}
+      {\color{highlight} \Large{\Role}}
+    }
+  
+    \rhead{
+      \href{https://github.com/\GitHub}{github.com/\GitHub} \\
+      \href{https://www.linkedin.com/in/\LinkedIn}{linkedin.com/in/\LinkedIn}
+    }
+
+    \renewcommand{\headrulewidth}{2pt}
+    \renewcommand{\headrule}{\hbox to\headwidth{
+      \color{highlight} \leaders \hrule height \headrulewidth \hfill}
+    }
+
+    \setlength{\headheight}{90pt}
+    \setlength{\headsep}{5pt}
+  }
+
+  \fancypagestyle{others} {
+    \fancyhf{}
+    \renewcommand{\headrulewidth}{0pt}
+    \setlength{\headheight}{30pt}
+    \setlength{\headsep}{5pt}
+  }

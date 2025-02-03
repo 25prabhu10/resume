@@ -1,0 +1,72 @@
+\documentclass[11pt,english]{article}
+
+% Personal Information
+\def\Name{John Doe}
+\def\Phone{(123) 456-7890}
+\def\City{New York, NY}
+\def\Email{johndoe@example.com}
+\def\GitHub{johndoe}
+\def\LinkedIn{johndoe}
+\def\Role{Software Engineer}
+
+\usepackage{PKResume}
+
+\begin{document}\pagestyle{others}\thispagestyle{first-page}
+
+% Objective
+Recent graduate with a degree in Computer Science and a passion for building seamless and functional user interfaces. Seeking a role to apply exceptional ability to switch between programming languages and frameworks as needed, while working quickly and independently.
+
+  \vspace{0.5em}
+
+\section{Skills}
+  \begin{tabular}{p{8em} p{1em} p{38em}}
+
+    \skills{Technical Skills} & &	  HTML, CSS, JavaScript, React, Angular, Node.js, Express, Python, Java, C++, SQL, MongoDB, PostgreSQL, AWS, Azure, GCP \\
+    \skills{Methodologies} & &		  Agile, Scrum, Waterfall \\
+    \skills{Tools} & &			  Git, JIRA, Confluence, TeamCity, Jenkins, Docker, Kubernetes \\
+
+  \end{tabular}
+
+\section{Experience}
+
+\company{Lead Software Engineer}{2023 --- Present}
+\subtext{Wayfair \hfill Austin, TX}
+  \begin{zitemize}
+
+    \item Moved the automation solution into a commercial software (\$60k/year)
+
+    \item Designed and developed reusable software components which used in 3 different project with reducing development effort by 50\%
+
+    \item Re-engineered critical modules within a sprint to rely on a centralized library to optimize performance by 68\%
+
+    \item Rated with the best annual performance rating for all the years during my stint; given to top 5\% employees
+
+  \end{zitemize}
+
+\company{Software Developer}{2017 --- 2023}
+\subtext{Target \hfill Austin, TX}
+  \begin{zitemize}
+
+    \item Helped to increase the accuracy of the reporting systems by 4\%
+
+    \item Delivered configuration management tools to track server settings for performance testing which saved 25\% of initial machine setup
+
+    \item Developed monitor reports that are using in-memory cache, updating the data shown to the user every 1 second
+
+    \item Optimized customer resources and reduce turnaround time by 20\%
+
+    \item Performed root cause analysis for more than 10 issues to identify bugs and rolled out fixes to production within 24 hours
+
+  \end{zitemize}
+
+\section{Education}
+
+  {\bfseries{Executive MBA, Engineering Management \hfill	2010 --- 2011}} \\
+  \textit{The University of Arizona \hfill	Tucson, AZ} \\
+  \vspace{0.5em}
+
+  {\bfseries{Bachelor of Science, Computer Science \hfill	2006 --- 2009}} \\
+  \textit{North Carolina Wesleyan College \hfill	Rocky Mount, NC} \\
+  \vspace{0.5em}
+
+\end{document}

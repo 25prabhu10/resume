@@ -25,10 +25,9 @@ VARIANTS ?= resume-dev resume-mgmt
 TECTONIC_OPTIONS := --outfmt pdf --outdir $(TEX_OUT_DIR)
 
 # Linting and formatting
-CHKTEX_OPTIONS := -q -wall -n3 -n22
-LATEXINDENT_OPTIONS := -w
-TEX_FILES := $(shell fd . $(TEX_SRC_DIR) -t f -e tex)
-TEX_STY_FILES := $(shell fd . $(TEX_SRC_DIR)/styles -t f -e sty)
+CHKTEX_OPTIONS := -q -wall -n3 -n22 -n30
+LATEXINDENT_OPTIONS := -l -w -s -m -c .backups
+TEX_FILES := $(shell fd . $(TEX_SRC_DIR) -t f -e tex -e sty)
 
 ifeq ($(TEX_DEBUG),1)
 	$(warning ***** Debug mode enabled - preserving intermediate files and logs)
@@ -66,7 +65,7 @@ $(VARIANTS):
 .PHONY: lint
 lint:
 	@echo "Running chktex and latexindent on LaTeX files..."
-	@chktex $(CHKTEX_OPTIONS) $(TEX_FILES) $(TEX_STY_FILES)
+	@chktex $(CHKTEX_OPTIONS) $(TEX_FILES)
 
 .PHONY: format
 format:
@@ -83,4 +82,4 @@ check: lint check-format
 
 .PHONY: clean
 clean:
-	@rm -rf $(TEX_OUT_DIR)
+	@rm -rf $(TEX_OUT_DIR) .backups

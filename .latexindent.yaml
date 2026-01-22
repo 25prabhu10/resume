@@ -1,0 +1,64 @@
+# https://latexindentpl.readthedocs.io/en/latest/sec-default-user-local.html
+defaultIndent: "    "
+
+# Local settings
+onlyOneBackUp: 1
+maxNumberOfBackUps: 3
+cycleThroughBackUps: 0
+logFilePreferences:
+  showEveryYamlRead: 0
+  showAmalgamatedSettings: 1
+  endLogFileWith: '--------------'
+
+# Indentation settings
+indentRules:
+  document: 1
+  section: 1
+  subsection: 1
+  subsubsection: 1
+  paragraph: 1
+  subparagraph: 1
+
+# Environment settings
+indentAfterItems:
+  itemize: 1
+  enumerate: 1
+  description: 1
+
+# Verbatim environments (no indentation)
+verbatimEnvironments:
+  verbatim: 1
+  lstlisting: 1
+  minted: 1
+
+# No additional indent for these environments
+noAdditionalIndent:
+  document: 0
+
+# Commands that can split across lines
+commandCodeBlocks:
+  roundParenthesesAllowed: 1
+  stringsAllowedBetweenArguments:
+    - amalgamate: 1
+
+# Trailing comments
+modifyLineBreaks:
+  textWrapOptions:
+    columns: 80
+  oneSentencePerLine:
+    manipulateSentences: 0
+  optionalArguments:
+    BeginStartsOnOwnLine: 0
+    BodyStartsOnOwnLine: 0
+    EndStartsOnOwnLine: 0
+    EndFinishesWithLineBreak: 0
+  mandatoryArguments:
+    BeginStartsOnOwnLine: 0
+    BodyStartsOnOwnLine: 1
+    EndStartsOnOwnLine: 0
+    EndFinishesWithLineBreak: 0
+
+# Horizontal whitespace
+removeTrailingWhitespace:
+  beforeProcessing: 1
+  afterProcessing: 1

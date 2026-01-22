@@ -1,5 +1,5 @@
-\NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{PKResume}[2025/02/01 PKResume v1.0]
+\NeedsTeXFormat{LaTeX2e}[2025/11/01]
+\ProvidesPackage{PKResume}[2026/01/19 PKResume v2.0]
 
 % Document Layout and Margins
 \usepackage{geometry}
@@ -44,7 +44,7 @@
 \titlespacing*{\subsection}{0em}{0em}{0em}
 \titleformat{\subsection}{\bfseries}{}{0em}{}[\vspace{.25em}]
 
-\newcommand{\company}[2]{\subsection*{#1\hfill{#2}}}
+\newcommand{\company}[2]{\subsection*{#1 \hfill \textit{\small #2}}}
 
 % Subtext Formatting
 \newcommand{\subtext}[1]{\textit{#1}\par\vspace{-.5em}}

@@ -9,7 +9,7 @@ endif
 MAKEFLAGS += --no-builtin-rules
 MAKEFLAGS += --warn-undefined-variables
 
-# Source files
+# source files
 TEX_SRC_DIR ?= src
 TEX_INPUT ?= resume.tex
 TEX_SRC := $(TEX_SRC_DIR)/$(TEX_INPUT)
@@ -18,17 +18,21 @@ TEX_OUTPUT ?= resume.pdf
 TEX_OUT := $(TEX_OUT_DIR)/$(TEX_OUTPUT)
 TEX_BUILD_ARTIFACT := $(TEX_OUT_DIR)/resume.pdf
 
+# resume variants
+VARIANTS ?= resume-dev resume-mgmt
+
 # tectonic options
 TECTONIC_OPTIONS := --outfmt pdf --outdir $(TEX_OUT_DIR)
 
 ifeq ($(TEX_DEBUG),1)
+	$(warning ***** Debug mode enabled - preserving intermediate files and logs)
 	TECTONIC_OPTIONS += --keep-intermediates --keep-logs
 endif
 
 .PHONY: all
 all: $(TEX_BUILD_ARTIFACT)
-	@if [[ "$(TEX_BUILD_ARTIFACT)" != "$(TEX_OUT)" ]]; then \
-		cp "$(TEX_BUILD_ARTIFACT)" "$(TEX_OUT)"; \
+	@if [[ -f "$(TEX_BUILD_ARTIFACT)" && "$(TEX_BUILD_ARTIFACT)" != "$(TEX_OUT)" ]]; then \
+		mv "$(TEX_BUILD_ARTIFACT)" "$(TEX_OUT)"; \
 	fi
 	@echo "PDF generated: $(TEX_OUT)"
 
@@ -36,7 +40,22 @@ $(TEX_OUT_DIR):
 	@mkdir -p $(TEX_OUT_DIR)
 
 $(TEX_BUILD_ARTIFACT): $(TEX_SRC) | $(TEX_OUT_DIR)
+	@if [ ! -f "$(TEX_SRC)" ]; then \
+		echo "Error: Source file $(TEX_SRC) not found"; \
+		exit 1; \
+	fi
 	@tectonic -X compile $(TEX_SRC) $(TECTONIC_OPTIONS)
+
+.PHONY: all-variants
+all-variants: $(VARIANTS)
+
+.PHONY: $(VARIANTS)
+$(VARIANTS):
+	@if [ ! -f "src/$@.tex" ]; then \
+		echo "Error: Variant source file src/$@.tex not found"; \
+		exit 1; \
+	fi
+	@$(MAKE) TEX_INPUT=$@.tex TEX_OUTPUT=$@.pdf
 
 .PHONY: clean
 clean:

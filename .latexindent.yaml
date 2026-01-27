@@ -1,29 +1,61 @@
 # https://latexindentpl.readthedocs.io/en/latest/sec-default-user-local.html
-defaultIndent: "    "
+# $schema: https://raw.githubusercontent.com/cmhughes/latexindent.pl/main/documentation/latexindent-yaml-schema.json
+defaultIndent: "  "
 
-# Local settings
-onlyOneBackUp: 1
+# only one backup per file:
+#   - if onlyOneBackUp is 0 then, as a safety measure,
+#     the number on the extension increments by 1 each time:
+#
+#           myfile.bak0, myfile.bak1, myfile.bak2
+#   - if you set onlyOnebackUp to 1, then the backup file will
+#     be overwritten each time (not recommended until you trust the script)
+onlyOneBackUp: 0
+
+# If maxNumberOfBackUps is set to 0 (or less) then infinitely
+# many backups are possible, unless onlyOneBackUp is switched on
 maxNumberOfBackUps: 3
+
+# for example, with maxNumberOfBackUps: 3, they may
+# wish to delete the oldest back up file, and keep only the most recent.
+#
+#    copy myfile.bak1 to myfile.bak0
+#    copy myfile.bak2 to myfile.bak1
+#    copy myfile.bak3 to myfile.bak2
+#
+# the back up will be written to myfile.bak3
 cycleThroughBackUps: 0
+
+# preferences for information displayed in the log file
 logFilePreferences:
-  showEveryYamlRead: 0
-  showAmalgamatedSettings: 1
-  endLogFileWith: '--------------'
+  showEveryYamlRead: 1
+  showAmalgamatedSettings: 0
+  endLogFileWith: "--------------"
 
 # Indentation settings
 indentRules:
-  document: 1
-  section: 1
-  subsection: 1
-  subsubsection: 1
-  paragraph: 1
-  subparagraph: 1
+  section: "  "
+  item: "  "
 
 # Environment settings
 indentAfterItems:
   itemize: 1
   enumerate: 1
   description: 1
+  list: 1
+
+indentAfterHeadings:
+  section:
+    indentAfterThisHeading: 1
+    level: 2
+  subsection:
+    indentAfterThisHeading: 1
+    level: 3
+  subsection*:
+    indentAfterThisHeading: 1
+    level: 3
+  subsubsection:
+    indentAfterThisHeading: 1
+    level: 4
 
 # Verbatim environments (no indentation)
 verbatimEnvironments:
@@ -45,20 +77,19 @@ commandCodeBlocks:
 modifyLineBreaks:
   textWrapOptions:
     columns: 80
+    when: after
   oneSentencePerLine:
     manipulateSentences: 0
-  optionalArguments:
-    BeginStartsOnOwnLine: 0
-    BodyStartsOnOwnLine: 0
-    EndStartsOnOwnLine: 0
-    EndFinishesWithLineBreak: 0
-  mandatoryArguments:
-    BeginStartsOnOwnLine: 0
+  environments:
+    BeginStartsOnOwnLine: 3
     BodyStartsOnOwnLine: 1
-    EndStartsOnOwnLine: 0
-    EndFinishesWithLineBreak: 0
+    EndStartsOnOwnLine: 3
+    EndFinishesWithLineBreak: 3
+  items:
+    ItemStartsOnOwnLine: 3
+    ItemFinishesWithLineBreak: 3
 
-# Horizontal whitespace
+# remove trailing whitespace from all lines
 removeTrailingWhitespace:
   beforeProcessing: 1
   afterProcessing: 1

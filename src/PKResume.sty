@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{PKResume}[2026/01/22 v2.1 PKResume]
+\ProvidesPackage{PKResume}[2026/01/26 v3 PKResume]
 
 % Document Layout and Margins
 \usepackage{geometry}
@@ -26,72 +26,82 @@
 \renewcommand{\arraystretch}{1.5}
 
 % Tighter spacing than itemize
-\setlist[itemize]{    leftmargin=1em,labelsep=.5em,    itemsep=2pt,    topsep=0.5em,    parsep=1pt,    label=\textcolor{highlight}{$\bullet$}  }
+\setlist[itemize]{
+  leftmargin=1em,
+  labelsep=.4em,
+  itemsep=1pt,
+  topsep=0.3em,
+  parsep=0pt,
+  label=\textcolor{highlight}{\(\bullet\)} % chktex 21
+}
 \newenvironment{zitemize}
 {
-    \begin{itemize} }{
-    \end{itemize}
+  \begin{itemize}
+    }{
+  \end{itemize}
 }
 
 % Section Formatting
 \usepackage[nostruts]{titlesec}
-\titlespacing*{\section}{0em}{0em}{0.5em}
-\titleformat{\section}{\color{highlight}\raggedright\large}{}{0em}{}[\vspace{-0.75em}\hrulefill]
+\titlespacing*{\section}{0em}{0.3em}{0.4em}
+  \titleformat{\section}{\color{highlight}\raggedright\large}{}{0em}{}[\vspace{-0.7em}\hrulefill]
 
-% Subsection Formatting
-\titlespacing*{\subsection}{0em}{0em}{0em}
-\titleformat{\subsection}{\bfseries}{}{0em}{}
+  % Subsection Formatting
+  \titlespacing*{\subsection}{0em}{0.2em}{0.1em}
+    \titleformat{\subsection}{\bfseries}{}{0em}{}
 
-% Subsection Title with Date Range
-\newcommand{\daterange}[1]{\textit{\small\textcolor{secondarycolor}{#1}}}
-\newcommand{\subsectiontitle}[2]{\subsection*{#1 \hfill \daterange{#2}}}
+    % Subsection Title with Date Range
+    \newcommand{\daterange}[1]{\textit{\small\textcolor{secondarycolor}{#1}}}
+    \newcommand{\subsectiontitle}[2]{\subsection*{#1 \hfill \daterange{#2}}}
 
-% Subtext with Location
-\newcommand{\location}[1]{\textit{\small\textcolor{secondarycolor}{#1}}}
-\newcommand{\subsectionsubtext}[1]{\location{#1}\par\nopagebreak\vspace{.3em}}
+    % Subtext with Location
+    \newcommand{\location}[1]{\textit{\small\textcolor{secondarycolor}{#1}}}
+    \newcommand{\subsectionsubtext}[1]{\location{#1}\par\nopagebreak\vspace{.2em}}
 
-% Bold Formatting
-\newcommand{\skills}[1]{{\bfseries #1}}
+    % Bold Formatting
+    \newcommand{\skills}[1]{{\bfseries #1}}
 
-% Header and Footer
-\usepackage{fancyhdr}
-\fancypagestyle{first_page}{
-    \fancyhf{}
+    % Header and Footer
+    \usepackage{fancyhdr}
+    \fancypagestyle{first_page}{
+      \fancyhf{}
 
-    \lhead{
+      \lhead{
+        \small
         \Phone{} \\
         \href{mailto:\Email}{\Email} \\
         \City{}
-    }
+      }
 
-    \chead{
+      \chead{
         \centering
         {\Huge\textbf{\color{textcolor}\Name}} \\
-        \vspace{.5em}
+        \vspace{.25em}
         {\color{highlight}\Large\bfseries{\Role}}
-    }
+      }
 
-    \rhead{
+      \rhead{
+        \small
         \href{https://github.com/\GitHub}{github.com/\GitHub} \\
         \href{https://www.linkedin.com/in/\LinkedIn}{linkedin.com/in/\LinkedIn}
+      }
+
+      \renewcommand{\headrulewidth}{1.5pt}
+      \renewcommand{\headrule}{\color{highlight}\hrule height \headrulewidth\vspace{-\headrulewidth}}
+
+      \setlength{\headheight}{50pt}
+      \setlength{\headsep}{6pt}
+      \setlength{\footskip}{60pt}
     }
 
-    \renewcommand{\headrulewidth}{2pt}
-    \renewcommand{\headrule}{\color{highlight}\hrule height \headrulewidth\vspace{-\headrulewidth}}
+    \fancypagestyle{others} {
+      \fancyhf{}
+      \renewcommand{\headrulewidth}{0pt}
+      \setlength{\headheight}{0pt}
+      \setlength{\headsep}{0pt}
+      \setlength{\footskip}{63pt}
+    }
 
-    \setlength{\headheight}{55pt}
-    \setlength{\headsep}{8pt}
-    \setlength{\footskip}{63pt}
-}
-
-\fancypagestyle{others} {
-    \fancyhf{}
-    \renewcommand{\headrulewidth}{0pt}
-    \setlength{\headheight}{0pt}
-    \setlength{\headsep}{0pt}
-    \setlength{\footskip}{63pt}
-}
-
-% Hyperlinks
-\usepackage{hyperref}
-\hypersetup{colorlinks=true, urlcolor=highlight, pdfborderstyle={/S/U/W 0}}
+    % Hyperlinks
+    \usepackage[hypertexnames=false]{hyperref}
+    \hypersetup{colorlinks=true, urlcolor=highlight, pdfborderstyle={/S/U/W 0}}

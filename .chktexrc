@@ -23,6 +23,14 @@ Silent
 {
     \CommonPath
     \RolePath
+    \RecipientName
+    \RecipientCompany
+    \RecipientStreetAddress
+    \RecipientCityStateZip
+    \StreetAddress
+    \Phone
+    \City
+    \CityStateZip
 
     # Standard LaTeX commands that don't produce output
     \rm \em \bf \it \sl \sf \sc \tt \selectfont

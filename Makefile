@@ -18,6 +18,10 @@ TEX_OUTPUT ?= resume.pdf
 TEX_OUT := $(TEX_OUT_DIR)/$(TEX_OUTPUT)
 TEX_BUILD_ARTIFACT := $(TEX_OUT_DIR)/resume.pdf
 
+# cover letter
+COVER_LETTER_SRC := $(TEX_SRC_DIR)/cover-letter.tex
+COVER_LETTER_OUT := $(TEX_OUT_DIR)/cover-letter.pdf
+
 # resume variants
 VARIANTS ?= resume-dev resume-mgmt
 
@@ -52,7 +56,18 @@ $(TEX_BUILD_ARTIFACT): $(TEX_SRC) | $(TEX_OUT_DIR)
 	@tectonic -X compile $(TEX_SRC) $(TECTONIC_OPTIONS)
 
 .PHONY: all-variants
-all-variants: $(VARIANTS)
+all-variants: $(VARIANTS) cover-letter
+
+.PHONY: cover-letter
+cover-letter: $(COVER_LETTER_OUT)
+	@echo "Cover letter generated: \"$(COVER_LETTER_OUT)\""
+
+$(COVER_LETTER_OUT): $(COVER_LETTER_SRC) | $(TEX_OUT_DIR)
+	@if [ ! -f "$(COVER_LETTER_SRC)" ]; then \
+		echo "Error: Source file $(COVER_LETTER_SRC) not found"; \
+		exit 1; \
+	fi
+	@tectonic -X compile $(COVER_LETTER_SRC) $(TECTONIC_OPTIONS)
 
 .PHONY: $(VARIANTS)
 $(VARIANTS):

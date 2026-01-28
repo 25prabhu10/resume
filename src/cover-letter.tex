@@ -1,0 +1,32 @@
+\documentclass[11pt]{letter}
+
+\input{data/personal-info.tex}
+\input{data/cover-letter-info.tex}
+
+\usepackage{pkcoverletter}
+
+% Set document properties
+\signature{\vspace{-3em}\Sender}
+\address{\letterpersonalinfo}
+
+\begin{document}
+  \begin{letter}{
+      \RecipientName \\
+      \RecipientCompany \\
+      \RecipientStreetAddress \\
+      \RecipientCityStateZip
+    }
+
+    % Salutation
+    \opening{\textbf{\LetterSalutation}}
+
+    % Optional subject line (comment out if not needed)
+    \subject{Application for [Position Title]}
+
+    % Letter
+    \input{sections/cover-letter/body}
+
+    % Signature and closing
+    \closing{\textbf{\LetterClosingSincerely}}
+  \end{letter}
+\end{document}

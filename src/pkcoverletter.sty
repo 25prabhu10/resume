@@ -1,0 +1,85 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{pkcoverletter}[2026/01/27 v1 Cover Letter Style Package]
+
+% Language settings
+\usepackage[english]{babel}
+
+% Document Layout and Margins
+\usepackage{geometry}
+\geometry{a4paper, margin=.5in}
+
+% No page number
+\pagenumbering{gobble}
+
+% Paragraph spacing
+\setlength{\parskip}{1em}
+
+% Font-family and Font-size
+\usepackage[default,semibold]{sourcesanspro}
+
+% Colours
+\usepackage{xcolor}
+\definecolor{highlight}{RGB}{61, 90, 128} % change colour https://g.co/kgs/aoqdi7
+\definecolor{textcolor}{RGB}{0, 0, 0}
+
+% Hyperlinks
+\usepackage[hypertexnames=false]{hyperref}
+\hypersetup{colorlinks=true, urlcolor=highlight, pdfborderstyle={/S/U/W 0}}
+
+% Left-aligns the closing and signature
+\longindentation=0pt
+
+% Personal info block for letter closing
+\newcommand{\letterpersonalinfo}{
+  \StreetAddress \\
+  \CityStateZip
+}
+
+% \subject{re_text}
+% Optional subject line with "Re:" prefix
+\newcommand{\subject}[1]{%
+  \medskip
+  \noindent%
+  \textcolor{highlight}{\textbf{Re: #1}}%
+  \medskip%
+}
+
+% Top Header Configuration
+\usepackage{fancyhdr}
+\fancypagestyle{plain}{
+  \fancyhf{}
+
+  \lhead{
+    \small
+    \Phone{} \\
+    \href{mailto:\Email}{\Email}
+  }
+
+  \chead{
+    \centering
+    {\huge\textbf{\color{textcolor}\Name}} \\
+    \vspace{.25em}
+    {\color{highlight}\Large\bfseries{\Role}}
+  }
+
+  \rhead{
+    \small
+    \href{https://github.com/\GitHub}{github.com/\GitHub} \\
+    \href{https://www.linkedin.com/in/\LinkedIn}{linkedin.com/in/\LinkedIn}
+  }
+
+  \renewcommand{\headrulewidth}{1.5pt}
+  \renewcommand{\headrule}{\color{highlight}\hrule height \headrulewidth\vspace{-\headrulewidth}}
+
+  \setlength{\headheight}{90pt}
+  \setlength{\headsep}{0pt}
+}
+\pagestyle{plain}
+
+\makeatletter
+\let\ps@empty\ps@plain % chktex 1
+\let\ps@firstpage\ps@plain % chktex 1
+\makeatother
+
+% End of pkcoverletter.sty
+\endinput

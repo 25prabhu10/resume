@@ -66,7 +66,7 @@ cover-letter: $(TEX_COVER_BUILD_ARTIFACT)
 	@if [[ -f "$(TEX_COVER_BUILD_ARTIFACT)" && "$(TEX_COVER_BUILD_ARTIFACT)" != "$(TEX_COVER_OUT)" ]]; then \
 		mv "$(TEX_COVER_BUILD_ARTIFACT)" "$(TEX_COVER_OUT)"; \
 	fi
-	@echo "Cover-letter PDF generated: \"$(TEX_COVER_OUT)\""
+	@echo "Cover letter PDF generated: \"$(TEX_COVER_OUT)\""
 
 $(TEX_COVER_BUILD_ARTIFACT): $(TEX_COVER_SRC) | $(TEX_OUT_DIR)
 	@if [ ! -f "$(TEX_COVER_SRC)" ]; then \

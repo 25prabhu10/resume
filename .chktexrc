@@ -9,7 +9,6 @@ CmdLine
 {
         -wall
         -n22 # Comment displayed
-        -n27 # Unable to open the TeX file `\CommonPath certifications.tex'
         -n30 # Multiple spaces detected in input.
 }
 

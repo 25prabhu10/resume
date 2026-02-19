@@ -34,7 +34,12 @@ TECTONIC_OPTIONS := --outfmt pdf --outdir $(TEX_OUT_DIR)
 # Linting and formatting
 CHKTEX_OPTIONS := -q
 LATEXINDENT_OPTIONS := -l -w -s -m -c .backups
-TEX_FILES := $(shell fd . $(TEX_SRC_DIR) -t f -e tex -e sty)
+
+ifeq ($(shell which fd),)
+	TEX_FILES := $(shell find $(TEX_SRC_DIR) -type f \( -name "*.tex" -o -name "*.sty" \))
+else
+	TEX_FILES := $(shell fd . $(TEX_SRC_DIR) -t f -e tex -e sty)
+endif
 
 ifeq ($(TEX_DEBUG),1)
 	$(warning ***** Debug mode enabled - preserving intermediate files and logs)
